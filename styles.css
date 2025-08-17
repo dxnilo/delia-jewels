@@ -380,3 +380,29 @@ ul { list-style: none; }
   .example-2 .icon-content a svg { width: 26px; height: 26px; }
   .example-2 .icon-content .tooltip { display: none; }
 } 
+
+/* Ticker superior */
+.ticker { padding: 0  clamp(16px, 4vw, 40px); margin-top: 4px; }
+.ticker-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffffffcc, #ffffffdd);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-1);
+}
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  padding: 10px 12px;
+  animation: ticker-scroll 22s linear infinite;
+}
+.ticker-item { color: #5b4b5e; font-weight: 500; }
+.ticker-sep { opacity: 0.35; }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+} 
