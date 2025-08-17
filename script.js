@@ -111,6 +111,16 @@
   // Detalle del producto actual
   let currentProduct = null; // { file, category, price }
 
+  function setBodyFlag(flag, isOn) {
+    document.body.classList.toggle(flag, !!isOn);
+    updateUiBlockingState();
+  }
+  function updateUiBlockingState() {
+    const c = document.body.classList;
+    const blocking = c.contains("modal-open") || c.contains("drawer-open") || c.contains("checkout-open");
+    document.body.classList.toggle("ui-blocking", blocking);
+  }
+
   function getQtyValue() {
     const n = parseInt(qtyInput.value || "1", 10);
     return isNaN(n) ? 1 : Math.max(1, n);
@@ -236,10 +246,12 @@
     qtyInput.value = "1";
 
     productModal.setAttribute("aria-hidden", "false");
+    setBodyFlag("modal-open", true);
     updateModalSubtotal();
   }
   function closeProductModal() {
     productModal.setAttribute("aria-hidden", "true");
+    setBodyFlag("modal-open", false);
   }
 
   productModal.addEventListener("click", (e) => {
@@ -406,9 +418,11 @@
 
   function openCheckout() {
     checkoutModal.setAttribute("aria-hidden", "false");
+    setBodyFlag("checkout-open", true);
   }
   function closeCheckout() {
     checkoutModal.setAttribute("aria-hidden", "true");
+    setBodyFlag("checkout-open", false);
   }
 
   checkoutBtn.addEventListener("click", () => {
@@ -449,11 +463,13 @@
     drawer.classList.add("is-open");
     drawer.setAttribute("aria-hidden", "false");
     drawerOverlay.classList.add("is-open");
+    setBodyFlag("drawer-open", true);
   }
   function closeCart() {
     drawer.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
     drawerOverlay.classList.remove("is-open");
+    setBodyFlag("drawer-open", false);
   }
 
   cartToggle.addEventListener("click", openCart);
