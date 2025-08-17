@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delia Jewels — Catálogo</title>
+  <meta name="description" content="Delia Jewels · Joyería artesanal · Catálogo de collares, pulseras, aretes y anillos">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="brand-mark">Delia Jewels</div>
+      <div class="brand-tagline">Joyería artesanal</div>
+    </div>
+    <div class="header-actions">
+      <form class="search" role="search" onsubmit="return false">
+        <input id="searchInput" type="search" placeholder="Buscar..." aria-label="Buscar" />
+      </form>
+      <button id="cartToggle" class="btn btn-ghost btn-cart" aria-haspopup="dialog" aria-controls="cartDrawer" title="Ver carrito">
+        <span class="cart-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6h15l-1.5 9h-12L5 3H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="20" r="1.5" fill="currentColor"/><circle cx="17.5" cy="20" r="1.5" fill="currentColor"/></svg>
+        </span>
+        <span class="badge-count" id="cartCount" aria-live="polite">0</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="Filtros de categorías">
+    <button class="filter-btn is-active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="collares">Collares</button>
+    <button class="filter-btn" data-filter="pulseras">Pulseras</button>
+    <button class="filter-btn" data-filter="aretes">Aretes</button>
+    <button class="filter-btn" data-filter="anillos">Anillos</button>
+  </nav>
+
+  <main class="main">
+    <section class="hero" aria-label="Presentación">
+      <div class="hero-card">
+        <h1>Hecho a mano, pieza por pieza</h1>
+        <p>Cada creación de <strong>Delia Jewels</strong> nace de un proceso artesanal, con materiales seleccionados y un estilo suave y femenino.</p>
+      </div>
+    </section>
+
+    <section class="catalog" aria-label="Catálogo">
+      <div id="catalogoGrid" class="grid" role="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Delia Jewels · Hecho a mano con amor</p>
+  </footer>
+
+  <!-- Modal de producto -->
+  <div id="productModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Detalle de producto">
+    <div class="modal-backdrop" data-close="modal"></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close btn btn-ghost btn-icon" id="productModalClose" aria-label="Cerrar">✕</button>
+      <div class="modal-media">
+        <img id="modalImg" alt="Producto Delia Jewels" />
+      </div>
+      <div class="modal-details">
+        <span id="modalBadge" class="badge"></span>
+        <h2 id="modalTitle">Pieza artesanal</h2>
+        <p id="modalDesc" class="muted">Hecha a mano con materiales seleccionados. Puedes consultarnos por personalización.</p>
+        <div class="price-row">
+          <div class="price" id="modalPrice">$0</div>
+          <div class="qty">
+            <button class="btn btn-ghost btn-icon" id="qtyMinus" aria-label="Disminuir">−</button>
+            <input id="qtyInput" type="number" min="1" value="1" aria-label="Cantidad" />
+            <button class="btn btn-ghost btn-icon" id="qtyPlus" aria-label="Aumentar">＋</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="addToCartBtn" class="btn btn-primary">Añadir al carrito</button>
+        </div>
+        <p class="shipping muted">Envíos nacionales. Tiempo de elaboración: 3–5 días hábiles.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrito (drawer) -->
+  <div id="drawerOverlay" class="drawer-overlay" data-close="drawer"></div>
+  <aside id="cartDrawer" class="drawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="drawer-header">
+      <h3>Tu carrito</h3>
+      <button id="cartClose" class="btn btn-ghost btn-icon" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="cartBody" class="drawer-body"></div>
+    <div class="drawer-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <div class="drawer-actions">
+        <button id="clearCart" class="btn btn-ghost">Vaciar</button>
+        <button id="checkoutBtn" class="btn btn-primary">Realizar pedido</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal de checkout -->
+  <div id="checkoutModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Datos de pedido">
+    <div class="modal-backdrop" data-close="checkout"></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close btn btn-ghost btn-icon" id="checkoutClose" aria-label="Cerrar">✕</button>
+      <div class="modal-details">
+        <h2>Datos para el pedido</h2>
+        <form id="checkoutForm">
+          <div class="field">
+            <label for="checkoutName">Nombre completo</label>
+            <input id="checkoutName" type="text" required placeholder="Tu nombre" />
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="checkoutPhone">Teléfono</label>
+              <input id="checkoutPhone" type="tel" required placeholder="Ej. +57 300 123 4567" />
+            </div>
+            <div class="field">
+              <label for="checkoutPostal">Código postal</label>
+              <input id="checkoutPostal" type="text" required placeholder="Ej. 110111" />
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="checkoutCountry">País</label>
+              <input id="checkoutCountry" type="text" required placeholder="Ej. Colombia" />
+            </div>
+            <div class="field">
+              <label for="checkoutCity">Ciudad</label>
+              <input id="checkoutCity" type="text" required placeholder="Ej. Bogotá" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="checkoutAddress">Dirección</label>
+            <input id="checkoutAddress" type="text" required placeholder="Calle, número, barrio" />
+          </div>
+          <div class="field">
+            <label for="checkoutPayment">Método de pago</label>
+            <select id="checkoutPayment" required>
+              <option value="" disabled selected>Selecciona un método</option>
+              <option>Tarjeta débito/crédito</option>
+              <option>Visa</option>
+              <option>Mastercard</option>
+              <option>PSE</option>
+              <option>Transfiya</option>
+              <option>Nequi</option>
+              <option>Bancolombia</option>
+              <option>Davivienda</option>
+              <option>PayPal</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" id="checkoutCancel">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="confirmOrderBtn">Confirmar pedido</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html> 
