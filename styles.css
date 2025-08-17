@@ -119,12 +119,12 @@ img, svg { max-width: 100%; height: auto; }
 .muted { color: var(--muted); }
 
 /* Modal */
-.modal { position: fixed; inset: 0; display: none; }
+.modal { position: fixed; inset: 0; display: none; z-index: 100; }
 .modal[aria-hidden="false"] { display: grid; place-items: center; }
-.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.12); backdrop-filter: blur(2px); }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.12); backdrop-filter: blur(2px); z-index: 100; }
 .modal-content {
   position: relative;
-  z-index: 1;
+  z-index: 101;
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
@@ -376,4 +376,8 @@ ul { list-style: none; }
 }
 @media (max-width: 560px) {
   .social-stack { right: 10px; bottom: 10px; }
+  .example-2 { gap: 8px; }
+  .example-2 .icon-content a { width: 44px; height: 44px; }
+  .example-2 .icon-content a svg { width: 26px; height: 26px; }
+  .example-2 .icon-content .tooltip { display: none; }
 } 
