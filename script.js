@@ -485,4 +485,13 @@
   // Inicialización
   render();
   renderCart();
+
+  // Enlaces sociales flotantes
+  const phoneFloat = "57XXXXXXXXXX"; // Reemplaza por tu número si quieres usar otro
+  const waUniverse = document.getElementById("waUniverse");
+  const igUniverse = document.getElementById("igUniverse");
+  const fbUniverse = document.getElementById("fbUniverse");
+  if (waUniverse) waUniverse.href = `https://wa.me/${phoneFloat}`;
+  if (igUniverse) igUniverse.href = "https://instagram.com/tu_usuario"; // TODO: cambia por el tuyo
+  if (fbUniverse) fbUniverse.href = "https://facebook.com/tu_pagina"; // TODO: cambia por el tuyo
 })(); 
