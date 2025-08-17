@@ -119,6 +119,11 @@
     const c = document.body.classList;
     const blocking = c.contains("modal-open") || c.contains("drawer-open") || c.contains("checkout-open");
     document.body.classList.toggle("ui-blocking", blocking);
+    const ss = document.querySelector(".social-stack");
+    if (ss) {
+      ss.style.display = blocking ? "none" : "";
+      ss.setAttribute("aria-hidden", blocking ? "true" : "false");
+    }
   }
 
   function getQtyValue() {
