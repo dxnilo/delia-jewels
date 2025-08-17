@@ -466,6 +466,18 @@
   });
   clearCartBtn.addEventListener("click", emptyCart);
 
+  // Cerrar drawer con scroll rápido hacia abajo en móvil
+  let lastY = 0;
+  window.addEventListener("touchstart", (e) => { lastY = e.touches[0]?.clientY || 0; }, { passive: true });
+  window.addEventListener("touchmove", (e) => {
+    const currentY = e.touches[0]?.clientY || 0;
+    const dy = currentY - lastY;
+    if (dy < -35 && drawer.classList.contains("is-open")) {
+      // swipe rápido hacia arriba (scroll hacia abajo contenido)
+      closeCart();
+    }
+  }, { passive: true });
+
   // Filtros
   filterButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
