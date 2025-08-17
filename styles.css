@@ -328,24 +328,10 @@ img, svg { max-width: 100%; height: auto; }
 /* Uiverse vertical social stack */
 ul { list-style: none; }
 .social-stack { position: fixed; right: 14px; bottom: 14px; z-index: 120; }
+.social-stack ul { list-style: none; margin: 0; padding: 0; }
 .example-2 { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
-.example-2 .icon-content { margin: 0; position: relative; }
-.example-2 .icon-content .tooltip {
-  position: absolute;
-  right: 55px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 8px;
-  opacity: 0;
-  visibility: hidden;
-  font-size: 12px;
-  transition: all 0.25s ease;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(2px);
-}
-.example-2 .icon-content:hover .tooltip { opacity: 1; visibility: visible; right: 60px; }
+.example-2 .icon-content { margin: 0; position: relative; list-style: none; }
+.example-2 .icon-content .tooltip { display: none; }
 .example-2 .icon-content a {
   position: relative;
   overflow: hidden;
@@ -362,7 +348,7 @@ ul { list-style: none; }
   text-decoration: none;
 }
 .example-2 .icon-content a:visited,
-.example-2 .icon-content a:active { color: #2b2b2b; text-decoration: none; }
+.example-2 .icon-content a:active { color: #2b2b2b !important; text-decoration: none; }
 .example-2 .icon-content a svg { position: relative; z-index: 1; width: 30px; height: 30px; }
 .example-2 .icon-content a .filled {
   position: absolute; bottom: 0; left: 0; width: 100%; height: 0; background-color: #000; transition: all 0.3s ease-in-out;
