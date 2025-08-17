@@ -423,4 +423,14 @@ ul { list-style: none; }
 @keyframes ticker-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* Ticker móvil: misma apariencia que desktop */
+@media (max-width: 520px) {
+  .ticker { padding: 0 16px; }
+  .ticker-viewport { height: 30px; border-radius: 10px; }
+  .ticker-track { animation-duration: 18s; padding-left: 100%; }
+  .ticker-item, .ticker-sep { line-height: 30px; font-size: 12px; }
+  .ticker-item { margin: 0 10px; }
+  .ticker-sep  { margin: 0 10px; }
 } 
