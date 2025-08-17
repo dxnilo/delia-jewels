@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Deutschlands";
+  src: url("fuente/Deutschlands.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #fff8fb;
   --surface: #ffffff;
@@ -65,7 +73,7 @@ img, svg { max-width: 100%; height: auto; }
 }
 
 .brand-mark {
-  font-family: "Playfair Display", serif;
+  font-family: "Deutschlands", "Playfair Display", serif;
   font-size: clamp(24px, 4vw, 40px);
   letter-spacing: 0.5px;
   background: linear-gradient(120deg, #c06c84 0%, #6c5b7b 50%, #355c7d 100%);
