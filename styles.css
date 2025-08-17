@@ -26,6 +26,7 @@ body {
   font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .header {
@@ -46,7 +47,14 @@ body {
   box-shadow: var(--shadow-1);
 }
 @media (max-width: 560px) {
-  .search input { width: 58vw; }
+  .header { flex-wrap: wrap; row-gap: 10px; }
+  .brand { width: 100%; }
+  .header-actions { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .search { width: 100%; }
+  .search input { width: 100%; }
+}
+@media (max-width: 380px) {
+  .brand-mark { font-size: 22px; }
 }
 
 .brand-mark {
@@ -212,6 +220,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  width: 100%;
 }
 
 @media (min-width: 720px) {
