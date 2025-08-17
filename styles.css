@@ -407,8 +407,8 @@ ul { list-style: none; }
 .ticker-track {
   display: inline-block;
   white-space: nowrap;
-  padding-left: 100%;
-  animation: ticker-marquee 20s linear infinite;
+  animation: ticker-marquee var(--ticker-duration, 20s) linear infinite;
+  animation-delay: calc(-1 * var(--ticker-duration, 20s) * 0.12);
   will-change: transform;
 }
 .ticker-item, .ticker-sep {
@@ -429,7 +429,7 @@ ul { list-style: none; }
 @media (max-width: 520px) {
   .ticker { padding: 0 16px; }
   .ticker-viewport { height: 30px; border-radius: 10px; }
-  .ticker-track { animation-duration: 18s; padding-left: 100%; }
+  .ticker-track { animation-duration: var(--ticker-duration-mobile, 16s); animation-delay: calc(-1 * var(--ticker-duration-mobile, 16s) * 0.15); }
   .ticker-item, .ticker-sep { line-height: 30px; font-size: 12px; }
   .ticker-item { margin: 0 10px; }
   .ticker-sep  { margin: 0 10px; }
