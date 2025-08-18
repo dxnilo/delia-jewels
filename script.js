@@ -195,8 +195,13 @@
       badge.className = "badge";
       badge.textContent = prettyCategory(category);
 
+      const priceChip = document.createElement("div");
+      priceChip.className = "price-chip";
+      priceChip.textContent = formatCurrency(getPrice(file));
+
       card.appendChild(img);
       card.appendChild(badge);
+      card.appendChild(priceChip);
 
       // Apertura de modal al click en tarjeta
       card.addEventListener("click", () => {
@@ -524,7 +529,15 @@
   const waUniverse = document.getElementById("waUniverse");
   const igUniverse = document.getElementById("igUniverse");
   const fbUniverse = document.getElementById("fbUniverse");
-  if (waUniverse) waUniverse.href = `https://wa.me/${phoneFloat}`;
-  if (igUniverse) igUniverse.href = "https://instagram.com/tu_usuario"; // TODO: cambia por el tuyo
-  if (fbUniverse) fbUniverse.href = "https://facebook.com/tu_pagina"; // TODO: cambia por el tuyo
+
+  // Solo establecer por defecto si en HTML sigue con '#'
+  if (waUniverse && (waUniverse.getAttribute("href") === "#" || waUniverse.getAttribute("href") === "")) {
+    waUniverse.href = `https://wa.me/${phoneFloat}`;
+  }
+  if (igUniverse && (igUniverse.getAttribute("href") === "#" || igUniverse.getAttribute("href") === "")) {
+    igUniverse.href = "https://instagram.com/tu_usuario"; // Cambia en index.html para tu URL real
+  }
+  if (fbUniverse && (fbUniverse.getAttribute("href") === "#" || fbUniverse.getAttribute("href") === "")) {
+    fbUniverse.href = "https://facebook.com/tu_pagina";
+  }
 })(); 
